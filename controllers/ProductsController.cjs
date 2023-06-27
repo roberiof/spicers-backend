@@ -30,17 +30,12 @@ const editById = async(req,res) => {
 
 const post = async(req,res) => {
   try{
-    const product = {
-      image: req.body.image,
-      name: req.body.name,
-      category: req.body.category,
-      price: req.body.price,
-      freight: req.body.freight,
-      amountWanted: 0,
-      amount: req.body.amount,
-    }
-    const response = await Product.create(product)
+    const response = []
+    req.body.forEach(async(item) => {
+      response.push(await Product.create(item))
+    })
     return res.status(201).json(response)
+
   } catch(error){
     console.log('post route error: ' + error.message)
   }
