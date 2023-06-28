@@ -1,15 +1,15 @@
 const Product = require('../models/ProductModel.cjs')
 
-const getAll = async(req,res) => {
+const GetAll = async(req,res) => {
   try{
     const products = await Product.find()
     return res.status(200).json(products)   
   }catch(error){
-    console.log("getAll route error: " + error.message)
+    console.log("GetAll route error: " + error.message)
   }
 }
 
-const editById = async(req,res) => {
+const EditById = async(req,res) => {
   try{
     const id = req.params.id
     const product = {
@@ -24,25 +24,44 @@ const editById = async(req,res) => {
     const response = await Product.findByIdAndUpdate(id , product , {new: true})
     return res.status(204).json(response)
   } catch(error){
-    console.log('editById route error: ' + error.message)
+    console.log('EditById route error: ' + error.message)
   }
 }
 
-const post = async(req,res) => {
+const Post = async(req,res) => {
   try{
-    const response = []
-    req.body.forEach(async(item) => {
-      response.push(await Product.create(item))
-    })
-    return res.status(201).json(response)
-
+    req.body.forEach(async(item) => (
+      await Product.create(item)
+    ))
+    return res.status(201).json()
   } catch(error){
-    console.log('post route error: ' + error.message)
+    console.log('Post route error: ' + error.message)
+  }
+}
+
+const DeleteAll = async(req,res) => {
+  try{
+    const response = await  Product.deleteMany({})
+    return res.status(201).json(response)
+  } catch(error){
+    console.log('DeleteAll route error: ' + error.message)
+  }
+}
+
+const DeleteById = async(req,res) => {
+  try{
+    const id = req.params.id 
+    const response = await Product.findByIdAndDelete(id)
+    return res.status(201).json(response)
+  } catch(error){
+    console.log('DeleteById route error: ' + error.message)
   }
 }
 
 module.exports = {
-  getAll,
-  editById, 
-  post
+  GetAll,
+  EditById, 
+  Post,
+  DeleteAll, 
+  DeleteById,
 }

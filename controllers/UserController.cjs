@@ -1,24 +1,35 @@
 const User = require('../models/UserModel.cjs')
 
-const getAll = async(req,res)=>{
+const GetAll = async(req,res)=>{
   try{
     const response = await User.find()
     res.status(200).json(response) 
   }catch(error){
-    console.log('getAll route error: ' +  error.message)
+    console.log('GetAll route error: ' +  error.message)
   }
 }
-const getById = async(req, res) => {
+
+const GetById = async(req, res) => {
   try{
     const id = req.params.id
     const response = await User.findById(id)
     return res.status(200).json(response)
   } catch(error){
-    console.log('getById route error ' + error.message)
+    console.log('GetById route error ' + error.message)
   }
 }
 
-const edit = async(req,res) => {
+const GetByEmail = async(req, res) => {
+  try{
+    const email = req.params.email
+    const response = await User.findOne({email})
+    return res.status(200).json(response)
+  } catch(error){
+    console.log('GetByEmail route error ' + error.message)
+  }
+}
+
+const Edit = async(req,res) => {
   try{
     const user = {
       name: req.body.name,
@@ -30,11 +41,11 @@ const edit = async(req,res) => {
     await User.findByIdAndUpdate(id, user , {new: true})
     return res.json(204).json(user)
   } catch(error){
-    console.log('edit route error: ' + error.message)
+    console.log('Edit route error: ' + error.message)
   }
 } 
 
-const post = async(req,res) => {
+const Post = async(req,res) => {
   try{
     const user = {
       name: req.body.name,
@@ -45,23 +56,35 @@ const post = async(req,res) => {
     const response = await User.create(user)
     return res.status(201).json(response)
   } catch(error){
-    console.log('post route error: ' + error.message)
+    console.log('Post route error: ' + error.message)
   }
 }
 
-const deleteById = async(req,res) => {
+const DeleteById = async(req,res) => {
   try{
     const id = req.params.id
     const response = await User.findByIdAndRemove(id)
-    return res.status(200).json(response)
+    return res.status(201).json(response)
   }catch(error){
     console.log('delete route error ' + error.message)
   }
 }
+
+const DeleteAll = async(req,res) => {
+  try{
+    const response = await User.deleteMany({})
+    return res.status(201).json(response)
+  }catch(error){
+    console.log('DeleteAll route error ' + error.message)
+  }
+}
+
 module.exports = {
-  edit,
-  post, 
-  getById,
-  deleteById,
-  getAll
+  Edit,
+  Post, 
+  GetByEmail,
+  GetById,
+  DeleteById,
+  DeleteAll,
+  GetAll
 }
