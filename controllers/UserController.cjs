@@ -32,6 +32,7 @@ const GetByEmail = async(req, res) => {
 const Edit = async(req,res) => {
   try{
     const user = {
+      messages: req.body.messages,
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
@@ -48,6 +49,7 @@ const Edit = async(req,res) => {
 const Post = async(req,res) => {
   try{
     const user = {
+      messages: req.body.messages,
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,

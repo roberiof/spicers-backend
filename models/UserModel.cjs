@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema({
   orders:{
     type: Array, 
     default: []
+  },
+  messages:{
+    type: Array, 
+    default: []
   }
 })
 
