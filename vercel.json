@@ -1,0 +1,15 @@
+{
+    "name": "spicers-backend", 
+    "version" : 2,
+    "public": true,
+    "build":{
+        "src": "index.cjs",
+        "use": "@vercel/node"
+    },
+    "routes":[
+        {
+            "src": "/(.*)",
+            "dest": "index.cjs"
+        }
+    ]
+}
