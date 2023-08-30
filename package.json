@@ -10,7 +10,7 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "start": "node index.cjs",
-    "dev": "nodemon index.cjs"
+    "start": "node api/index.cjs",
+    "dev": "nodemon api/index.cjs"
   }
 }
