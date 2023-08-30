@@ -2,7 +2,7 @@
     "version" : 2,
     "public": true,
     "build":{
-        "src": "./index.cjs",
+        "src": "api/index.cjs",
         "use": "@vercel/node"
     },
     "routes":[
