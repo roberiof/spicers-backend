@@ -1,16 +1,3 @@
 {
-    "version" : 2,
-    "public": true,
-    "build":{
-        "src": "api/index.cjs",
-        "use": "@vercel/node"
-    },
-    "routes":[
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ],
     "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
-
 }
