@@ -19,7 +19,9 @@ Spicers is a store of spicy products. At the moment, the project is made of 5 pa
   * **Login**: Login or create an account;
 <br>
 Besides that, obviously the project is 100% adaptable for mobile devices and strategy planned for future software maintenance. 
+<br>
 
+_PS: The Render (deployment platoform) non paid deploy desacelerates the API after 15 minutes inactivity. So probably, you'll have to wait some time to test it. To overcome this, you can just clone the frontend and backend repos and test in your device._
 
 ## 🚀 Techs used 
 * **[ Node JS ](https://nodejs.org/en)**
